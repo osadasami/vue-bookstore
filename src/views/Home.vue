@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import BookList from "@/components/BookList.vue";
-import BooksService from "@/services/BooksService";
-const booksService = new BooksService();
-const books = booksService.getBooks();
+import useBookStore from "@/stores/books";
+import { computed, onMounted } from "vue";
+
+const bookStore = useBookStore();
+const books = computed(() => bookStore.books);
+
+onMounted(() => {
+  bookStore.fetchBooks();
+});
 </script>
 <template>
   <div>

@@ -1,8 +1,18 @@
+import BooksService from "@/services/BooksService";
+import type Book from "@/types/Book";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, type Ref } from "vue";
 
 const useBookStore = defineStore("books", () => {
-  const books = ref([]);
+  const booksService = new BooksService();
+  const books: Ref<Book[]> = ref([]);
 
-  return books;
+  const fetchBooks = async () => {
+    const data = await booksService.getBooks();
+    books.value = data;
+  };
+
+  return { books, fetchBooks };
 });
+
+export default useBookStore;
