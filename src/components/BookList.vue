@@ -7,10 +7,6 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <ul>
-    <li v-for="book in props.books">
-      <BookListItem :book="book" />
-    </li>
-  </ul>
+  <BookListItem v-for="book in props.books" :book="book" />
 </template>
 <style scoped></style>

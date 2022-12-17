@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BookList from "@/components/BookList.vue";
+import Order from "@/components/Order.vue";
 import useBookStore from "@/stores/books";
 import { computed, onMounted } from "vue";
 
@@ -12,8 +13,8 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <h1>Home</h1>
     <BookList :books="books" />
+    <Order />
   </div>
 </template>
 <style scoped></style>

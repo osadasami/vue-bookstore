@@ -3,6 +3,7 @@ type Book = {
   title: string;
   author: string;
   cover: string;
+  price: number;
 };
 
 export default Book;
