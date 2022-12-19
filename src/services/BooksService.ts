@@ -31,9 +31,13 @@ const books: Book[] = [
 
 export default class BooksService {
   async getBooks(): Promise<Book[]> {
-    return new Promise((res) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
-        res(books);
+        if (Math.random() < 0.75) {
+          resolve(books);
+        } else {
+          reject(new Error("Something bad happened"));
+        }
       }, 500);
     });
   }
