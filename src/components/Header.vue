@@ -6,11 +6,13 @@ const props = defineProps<{
 </script>
 <template>
   <header class="shop-header row">
-    <a class="logo text-dark" href="#">Book Store</a>
-    <a class="shopping-cart">
+    <router-link :to="{ name: 'home' }" class="logo text-dark"
+      >Book Store</router-link
+    >
+    <router-link :to="{ name: 'cart' }" class="shopping-cart">
       <i className="cart-icon fa fa-shopping-cart" />
       {{ props.itemsCount }} items ({{ props.total }})
-    </a>
+    </router-link>
   </header>
 </template>
 <style scoped>

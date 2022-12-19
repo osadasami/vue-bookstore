@@ -16,7 +16,7 @@ onMounted(() => {
 <template>
   <div>
     <Spinner :is-loading="isLoading" />
-    <BookList :books="books" />
+    <BookList v-if="!isLoading" :books="books" />
     <Order />
   </div>
 </template>
