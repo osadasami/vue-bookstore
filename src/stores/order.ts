@@ -36,16 +36,24 @@ const useOrderStore = defineStore("order", () => {
     }
   };
 
-  const inc = (orderItem: OrderItem, qnt: number = 1) => {
-    const itemInOrder = items.value[orderItem.item.id];
-
-    if (itemInOrder.count < 1) return;
-
-    itemInOrder.count += qnt;
-    itemInOrder.total = toFixed(
-      orderItem.item.price * (orderItem.count + qnt),
+  const inc = (orderItem: OrderItem) => {
+    items.value[orderItem.item.id].count += 1;
+    items.value[orderItem.item.id].total = toFixed(
+      orderItem.item.price * orderItem.count,
       2
     );
+  };
+
+  const dec = (orderItem: OrderItem) => {
+    const itemInOrder = items.value[orderItem.item.id];
+
+    if (itemInOrder.count > 1) {
+      itemInOrder.count -= 1;
+      items.value[orderItem.item.id].total = toFixed(
+        orderItem.item.price * orderItem.count,
+        2
+      );
+    }
   };
 
   const remove = (item: OrderItem) => {
@@ -54,7 +62,7 @@ const useOrderStore = defineStore("order", () => {
 
   const toFixed = (n: number, f: number) => parseFloat(n.toFixed(f));
 
-  return { items, total, count, add, inc, remove };
+  return { items, total, count, add, inc, dec, remove };
 });
 
 export default useOrderStore;

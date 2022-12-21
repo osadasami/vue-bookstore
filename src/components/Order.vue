@@ -39,7 +39,7 @@ const orderStore = useOrderStore();
             </button>
 
             <button
-              @click="orderStore.inc(orderItem, -1)"
+              @click="orderStore.dec(orderItem)"
               class="btn btn-outline-warning btn-sm float-right"
             >
               <i class="fa fa-minus-circle" />
