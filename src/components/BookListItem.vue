@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import useOrderStore from "@/stores/order";
 import type Book from "@/types/Book";
+
+const orderStore = useOrderStore();
 
 const props = defineProps<{
   book: Book;
@@ -14,7 +17,9 @@ const props = defineProps<{
       <a href="#" class="book-title">{{ book.title }}</a>
       <div class="book-author">{{ book.author }}</div>
       <div class="book-price">{{ book.price }}</div>
-      <button class="btn btn-info add-to-cart">Add to cart</button>
+      <button @click="orderStore.add(book)" class="btn btn-info add-to-cart">
+        Add to cart
+      </button>
     </div>
   </div>
 </template>
